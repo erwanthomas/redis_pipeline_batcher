@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+  ruby:
+    build: docker/ruby/
+    image: redis_pipeline_batcher_ruby
+    command: tail -f /dev/null
+    volumes:
+      - /usr/local/bundle
+      - ./:/code
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+
+  redis:
+    image: redis:alpine
